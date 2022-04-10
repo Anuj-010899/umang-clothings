@@ -1,4 +1,5 @@
 import { useState } from "react";
+
 import "./sign-in-form.styles.scss";
 import {
   createAuthUserWithEmailAndPassword,
@@ -18,22 +19,19 @@ const SignInForm = () => {
   const [formFields, setFormFields] = useState(defaultFormFields);
   const { email, password } = formFields;
 
-  console.log(formFields);
-
   const resetFormFields = () => {
     setFormFields(defaultFormFields);
   };
   const signInWithGoogle = async () => {
-    const { user } = await signInWithGooglePopup();
-    await createUserDocumentFromAuth(user);
+    await signInWithGooglePopup();
   };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
 
     try {
-      const response = await signInAuthWithEmailAndPassword;
-      console.log(response);
+      const { user } = await signInAuthWithEmailAndPassword(email, password);
+
       resetFormFields();
     } catch (error) {
       switch (error.code) {
@@ -79,7 +77,7 @@ const SignInForm = () => {
         ></FormInput>
         <div className="buttons-container">
           <Button type="submit">Sign In</Button>
-          <Button type="button" buttonType="google">
+          <Button onClick={signInWithGoogle} type="button" buttonType="google">
             Google Sign In
           </Button>
         </div>
