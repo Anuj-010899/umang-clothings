@@ -5,7 +5,7 @@ import CartDropdown from "../../components/cart-dropdown/cart-dropdown.component
 import "./navigation.styles.scss";
 import { useContext } from "react";
 import { signOutUser } from "../../utils/firebase/firebase.utils";
-import { ReactComponent as UCLogo } from "../../assets/UCLogoImg.svg";
+import { ReactComponent as UCLogo } from "../../assets/crown.svg";
 import { UserContext } from "../../context/user.context";
 import { CartContext } from "../../context/cart.context";
 
